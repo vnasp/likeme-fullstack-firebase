@@ -84,15 +84,18 @@ export default function ImagesUpload() {
           py: 2,
         }}
       >
-        <Box sx={{ py: 3 }}>
-          <Typography component="h2" variant="h5" gutterBottom sx={{fontFamily: "Limelight, sans-serif",
-}}>
-            CXXXVIII Exposición de Arte
-          </Typography>
-          <Typography component="h3" variant="subtitle1" gutterBottom>
-            Participa subiendo tu obra
-          </Typography>
-        </Box>
+        <Typography
+          component="h2"
+          variant="h5"
+          gutterBottom
+          sx={{ fontFamily: "Limelight, sans-serif" }}
+        >
+          CXXXVIII Exposición de Arte
+        </Typography>
+        <Typography component="h3" variant="subtitle1" gutterBottom>
+          Participa subiendo tu obra
+        </Typography>
+
         <Button
           component="label"
           role={undefined}
@@ -104,7 +107,7 @@ export default function ImagesUpload() {
           <VisuallyHiddenInput type="file" onChange={handleFileUpload} />
         </Button>
         {filename && <Typography>Nombr de archivo: {filename}</Typography>}
-        <Box component="div" sx={{ ...glassStyle, my: 2 }}>
+        <Box component="div" sx={{ ...glassStyle }}>
           <TextField
             fullWidth
             label="Título de tu obra"
@@ -114,7 +117,7 @@ export default function ImagesUpload() {
             required
           />
         </Box>
-        <Box component="div" sx={{ ...glassStyle, my:2 }}>
+        <Box component="div" sx={{ ...glassStyle }}>
           <TextField
             fullWidth
             required
@@ -124,16 +127,11 @@ export default function ImagesUpload() {
             onChange={(event) => setAbout(event.target.value)}
           />
         </Box>
-        <Box component="div" m={2}>
-        <Typography variant="subtitle2" m={2}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla posuere
-          nisi eget turpis scelerisque, ut efficitur justo lobortis.
-        </Typography>
-          <Button variant="contained" onClick={addPost}>
+        <Button variant="contained" onClick={addPost}>
             Agregar
           </Button>
-        </Box>
-      
+        
+
         <SnackbarItem
           openSnackbar={openSnackbar}
           snackbarMessage={snackbarMessage}

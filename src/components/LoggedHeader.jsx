@@ -32,7 +32,7 @@ export default function LoggedHeader() {
           display={"flex"}
           justifyContent={"space-around"}
           alignItems={"center"}
-          gap={2}
+          gap={1}
         >
           <img
             srcSet={user.photoURL}

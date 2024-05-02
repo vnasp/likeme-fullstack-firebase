@@ -15,7 +15,7 @@ import ImagesLike from "./ImagesLike";
 export default function ImagesAll() {
   const { images } = useImages();
   return (
-    <Box sx={{ width: "100%", height: "100vh", overflowY: "scroll" }}>
+    <Box sx={{ width: "100%", height: "80vh", overflowY: "scroll" }}>
       <ImageList variant="masonry" cols={4} gap={8}>
         {images.map((image) => (
           <ImageListItem key={image.id}>

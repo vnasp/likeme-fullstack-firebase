@@ -23,7 +23,7 @@ export const theme = createTheme({
   palette: {
     primary: {
       main: '#003d74', // Azul oscuro
-      light: '#6bb7d5', // Azul claro
+      light: '#3b7186', // Azul claro
       dark: '#002851', // Variante más oscura para contraste
     },
     secondary: {

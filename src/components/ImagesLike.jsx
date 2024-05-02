@@ -13,6 +13,7 @@ import SnackbarItem from "./SnackbarItem";
 
 export default function ImagesLike({ image }) {
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
   const [userHasLiked, setUserHasLiked] = useState(false);
   const { user } = useAuth();
   const { handleLikeImage, handleDislikeImage } = useImages();
@@ -20,6 +21,8 @@ export default function ImagesLike({ image }) {
   const handleLike = async () => {
     if (!user) {
       setOpenSnackbar(true);
+      setSnackbarMessage("Debes ingresar para dar like.");
+
       return;
     }
   
@@ -61,7 +64,7 @@ export default function ImagesLike({ image }) {
       <Box component="span" sx={{ marginRight: "0.2rem", color:"white" }}>
         ({image.likes})
       </Box>
-      <SnackbarItem openSnackbar={openSnackbar} handleCloseSnackbar={handleCloseSnackbar}/>
+      <SnackbarItem openSnackbar={openSnackbar} handleCloseSnackbar={handleCloseSnackbar} snackbarMessage={snackbarMessage}/>
     </>
   );
 }

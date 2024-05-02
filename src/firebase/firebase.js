@@ -74,7 +74,7 @@ export async function registerUser(user) {
 }
 
 // Upload a new artwork
-export async function addImage({uid, file, title, about, likes, likedBy}) {
+export async function addImage({uid, file, title, about}) {
   try {
     // Normaliza el título para el uso en un nombre de archivo
     const normalizedTitle = title.replace(/\s+/g, "-").toLowerCase();
@@ -92,8 +92,8 @@ export async function addImage({uid, file, title, about, likes, likedBy}) {
       title,
       about,
       photoURL,
-      likes,
-    likedBy,
+      likes: Number(0),
+      likedBy: [],
       createdAt: new Date(),
     };
     const docRef = await addDoc(collection(db, "galleries"), dataImagen); // Corregido aquí
@@ -126,7 +126,6 @@ export async function deleteImage(imageId) {
   try {
     const imageRef = doc(db, "galleries", imageId);
     await deleteDoc(imageRef);
-    console.log("Document successfully deleted!");
     return true;
   } catch (error) {
     console.error("Error removing document: ", error);
@@ -142,7 +141,6 @@ export async function updateImage(imageId, newTitle, newAbout) {
     };
     const imageRef = doc(db, "galleries", imageId);
     await updateDoc(imageRef, newDataImage);
-    console.log("Document successfully updated!");
     return true;
   } catch (error) {
     console.error("Error updating document: ", error);
@@ -157,7 +155,6 @@ export async function likeImage(imageId, userId) {
       likes: increment(1),
       likedBy: arrayUnion(userId)
     });
-    console.log("Like added successfully!");
     return true;
   } catch (error) {
     console.error("Error adding like: ", error);
@@ -171,9 +168,8 @@ export async function dislikeImage(imageId, userId) {
   try {
     await updateDoc(imageRef, {
       likes: increment(-1),
-      likedBy: arrayRemove(userId)  // Elimina el ID del usuario de la lista de "likedBy"
+      likedBy: arrayRemove(userId)
     });
-    console.log("Like removed successfully!");
     return true;
   } catch (error) {
     console.error("Error removing like: ", error);

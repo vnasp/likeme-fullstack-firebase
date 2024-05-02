@@ -22,18 +22,20 @@ export const ImagesProvider = ({ children }) => {
   // Agregar imagen
   const handleAddNewImage = async (uid, file, title, about) => {
     try {
-      const newImageData = { uid, file, title, about, likes: 0, likedBy: [] };
+      const newImageData = { uid, file, title, about };
       const addedImage = await addImage(newImageData);
-    if (addedImage) {
-      setImages(prevImages => [...prevImages, addedImage]);
-      return { success: true, message: "Imagen subida exitosamente" };
-    }
+      if (addedImage) {
+        setImages(prevImages => [...prevImages, { ...addedImage, uid: uid, likes: 0, likedBy: [] }]);
+        return { success: true, message: "Imagen subida exitosamente" };
+      } else {
+        return { success: false, message: "No se pudo subir la imagen" };
+      }
     } catch (error) {
       console.error("Error al subir la imagen:", error);
       return { success: false, message: "Error al subir la imagen" };
     }
   };
-
+  
   // Eliminar imagen
   const handleDeleteImage = async (imageId) => {
     const success = await deleteImage(imageId);

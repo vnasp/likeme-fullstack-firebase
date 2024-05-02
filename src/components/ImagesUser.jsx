@@ -64,8 +64,8 @@ export default function ImagesUser() {
           textAlign: "center",
         }}
       >
-        <Typography component="h2" variant="h4">
-          Mis imágenes
+        <Typography component="h2" variant="h5">
+          Galeria de tus imágenes
         </Typography>
         <ImageList
           sx={{

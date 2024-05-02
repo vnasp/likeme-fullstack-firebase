@@ -24,23 +24,26 @@ export default function App() {
       maxWidth="xl"
       sx={{
         display: "flex",
-        }}
+        height: "70vh",
+      }}
     >
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         <Grid
           item
           xs={12}
-          md={6}
-          sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
-        >  <Box
-        component="header"
-        sx={{ ...glassStyle, flexGrow: 0, textAlign: "center" }}
-      >
-        <Header />
-      </Box>
+          md={7}
+          sx={{ display: "flex", flexDirection: "column", flexGrow: 1, overflowY: "scroll"}}
+        >
+          {" "}
+          <Box
+            component="header"
+            sx={{ ...glassStyle, flexGrow: 0, textAlign: "center" }}
+          >
+            <Header />
+          </Box>
           <Box
             component="section"
-            sx={{ ...glassStyle, flexGrow: 1, textAlign: "center" }}
+            sx={{ ...glassStyle, flexGrow: 1, textAlign: "center", height: "70vh"}}
           >
             <ImagesAll />
           </Box>
@@ -49,10 +52,9 @@ export default function App() {
         <Grid
           item
           xs={12}
-          md={6}
+          md={5}
           sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
         >
-        
           <Box
             component="main"
             sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}

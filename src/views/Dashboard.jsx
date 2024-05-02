@@ -1,5 +1,4 @@
 // External libraries
-import { Box } from "@mui/material";
 
 // Global utilities and settings
 

@@ -1,5 +1,10 @@
 // External libraries
-import { Box, ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
+import {
+  Box,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
+} from "@mui/material";
 
 // Global utilities and settings
 import { useImages } from "../contexts/ImagesContext";
@@ -9,10 +14,9 @@ import ImagesLike from "./ImagesLike";
 
 export default function ImagesAll() {
   const { images } = useImages();
-
   return (
-    <Box sx={{ width: "100%", height: "80vh", overflowY: "scroll" }}>
-      <ImageList variant="masonry" cols={3} gap={8}>
+    <Box sx={{ width: "100%", height: "100vh", overflowY: "scroll" }}>
+      <ImageList variant="masonry" cols={4} gap={8}>
         {images.map((image) => (
           <ImageListItem key={image.id}>
             <img
@@ -22,10 +26,16 @@ export default function ImagesAll() {
               loading="lazy"
             />
             <ImageListItemBar
-              title={image.title}
+              sx={{
+                background:
+                  "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, " +
+                  "rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+              }}
+              position="top"
               actionIcon={<ImagesLike image={image} />}
-              sx={{ textAlign: "left" }}
+              actionPosition="right"
             />
+            <ImageListItemBar title={image.title} />
           </ImageListItem>
         ))}
       </ImageList>

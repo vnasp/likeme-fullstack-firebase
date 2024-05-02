@@ -17,11 +17,8 @@ export default function Login() {
     }
   };
 
-  if (!isAuthenticated) {
-    return <Button onClick={handleGoogleSignIn} variant="contained">Ingresar</Button>;
-  }
-
-  return 
-  (<>
-  </>)
+  return (
+    !isAuthenticated ? 
+    <Button onClick={handleGoogleSignIn} variant="contained">Ingresar</Button> : null 
+  );
 }

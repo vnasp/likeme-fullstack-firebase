@@ -10,10 +10,10 @@ import { useImages } from "../contexts/ImagesContext";
 
 // Components
 import SnackbarItem from "./SnackbarItem";
-import LogOutButton from "./LogOutButton";
 
 // Styles
 import { glassStyle } from "../theme";
+import LoggedHeader from "./LoggedHeader";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -28,7 +28,7 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 export default function ImagesUpload() {
-  const { user, isRegistered } = useAuth();
+  const { user } = useAuth();
   const { handleAddNewImage } = useImages();
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -74,62 +74,23 @@ export default function ImagesUpload() {
 
   return (
     <>
+      <LoggedHeader />
       <Box
         component="section"
         sx={{
           ...glassStyle,
-        }}
-      >
-        {isRegistered ? (
-          <Box
-            component="div"
-            display={"flex"}
-            justifyContent={"space-between"}
-          >
-            <Box
-              component="div"
-              display={"flex"}
-              justifyContent={"space-around"}
-              alignItems={"center"}
-              gap={2}
-            >
-              <img
-                srcSet={user.photoURL}
-                src={user.photoURL}
-                alt={user.displayName}
-                loading="lazy"
-                width={50}
-                height={50}
-              />
-              <Typography component="h3" variant="h5">{user.displayName}</Typography>
-            </Box>
-            <LogOutButton />
-          </Box>
-        ) : (
-          <Box component="div">Usuario no registrado</Box>
-        )}
-      </Box>
-      <Box
-        component="section"
-        sx={{
-          ...glassStyle,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
           flexGrow: 1,
           textAlign: "center",
-          py: 4,
+          py: 2,
         }}
       >
         <Box sx={{ py: 3 }}>
-          <Typography component="h2" variant="h4" gutterBottom>
-            Subir una obra de arte
+          <Typography component="h2" variant="h5" gutterBottom sx={{fontFamily: "Limelight, sans-serif",
+}}>
+            CXXXVIII Exposición de Arte
           </Typography>
-          <Typography variant="subtitle2" gutterBottom>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-            vero doloremque optio nobis iure mollitia corporis, rerum hic
-            architecto. Dolorem fuga sequi ipsam possimus! Neque voluptate
-            beatae tenetur fugit ratione?
+          <Typography component="h3" variant="subtitle1" gutterBottom>
+            Participa subiendo tu obra
           </Typography>
         </Box>
         <Button
@@ -139,11 +100,11 @@ export default function ImagesUpload() {
           tabIndex={-1}
           startIcon={<CloudUploadIcon />}
         >
-          Sube una imagen
+          Elige una imagen
           <VisuallyHiddenInput type="file" onChange={handleFileUpload} />
         </Button>
-        {filename && <Typography>{filename}</Typography>}
-        <Box component="div" sx={{ my: 2 }}>
+        {filename && <Typography>Nombr de archivo: {filename}</Typography>}
+        <Box component="div" sx={{ ...glassStyle, my: 2 }}>
           <TextField
             fullWidth
             label="Título de tu obra"
@@ -153,7 +114,7 @@ export default function ImagesUpload() {
             required
           />
         </Box>
-        <Box component="div" sx={{ marginBottom: "16px" }}>
+        <Box component="div" sx={{ ...glassStyle, my:2 }}>
           <TextField
             fullWidth
             required
@@ -163,21 +124,16 @@ export default function ImagesUpload() {
             onChange={(event) => setAbout(event.target.value)}
           />
         </Box>
-        <Box component="div" sx={{ marginBottom: "16px" }}>
+        <Box component="div" m={2}>
+        <Typography variant="subtitle2" m={2}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla posuere
+          nisi eget turpis scelerisque, ut efficitur justo lobortis.
+        </Typography>
           <Button variant="contained" onClick={addPost}>
             Agregar
           </Button>
         </Box>
-        <Typography variant="body2" color="textSecondary">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla posuere
-          nisi eget turpis scelerisque, ut efficitur justo lobortis. Maecenas
-          porta dignissim leo ut molestie. Proin cursus scelerisque nisl, a
-          aliquam sem rutrum non. Sed lacinia dapibus tincidunt. Nullam commodo
-          risus id nunc ornare vehicula. Class aptent taciti sociosqu ad litora
-          torquent per conubia nostra, per inceptos himenaeos. Maecenas tempus
-          sapien sit amet justo pulvinar, id lacinia ante pharetra. Nam
-          venenatis ex ac aliquam mollis.
-        </Typography>
+      
         <SnackbarItem
           openSnackbar={openSnackbar}
           snackbarMessage={snackbarMessage}

@@ -1,8 +1,25 @@
-# React + Vite
+# Galeria de Arte 🎨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bienvenido al repositorio de Art Gallery, un sitio web interactivo que permite a los usuarios compartir sus obras de arte y participar en el concurso anual.
 
-Currently, two official plugins are available:
+## Características 🌟
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Like/Dislike**: Dale me gusta a tu obra favorita y ve cuál lleva más votos.
+- **Participa con tu imagan**: Tienes la posibilidad de subir o eliminar tus propias obras.
+- **Autenticación de Usuarios**: Ingresa y registrarte automáticamente con Google.
+- **Diseño Responsivo**: Navega desde cualquier dispositivo gracias a MaterialUI.
+
+
+## Tecnologías Utilizadas 💻
+
+Este proyecto está construido utilizando las siguientes tecnologías y bibliotecas:
+
+- **ReactJS**: Se utilizó `useState`, `useEffect` para manejar el estado.
+  - **React Router**: Para la navegación dentro de la aplicación.
+  - **React Context API**: Se usó `useContext` para gestionar el estado global de la aplicación.
+- **MaterialUI**: Para esterilizar el sitio web manteniendo un diseño responsive y atractivo.
+- **Firebase**: Para implementar la autenticación, almacenamiento de imágenes, base de datos NoSQL y hosting del proyecto.
+
+## Despliegue 🚀
+
+El sitio web está desplegado y accesible en: http://artgallery-c1d06.web.app

@@ -6,6 +6,7 @@ import {
   uploadBytes,
   getDownloadURL,
   getBytes,
+  deleteObject,
 } from "firebase/storage";
 import {
   getFirestore,
@@ -92,6 +93,7 @@ export async function addImage({uid, file, title, about}) {
       title,
       about,
       photoURL,
+      fileName,
       likes: Number(0),
       likedBy: [],
       createdAt: new Date(),
@@ -125,13 +127,24 @@ export async function getAllImages() {
 export async function deleteImage(imageId) {
   try {
     const imageRef = doc(db, "galleries", imageId);
-    await deleteDoc(imageRef);
-    return true;
+    const docSnap = await getDoc(imageRef);
+    
+    if (docSnap.exists()) {
+      const { fileName } = docSnap.data();
+      const fileRef = ref(storage, `images/${fileName}`);
+      await deleteDoc(imageRef);  // Borra primero el documento
+      await deleteObject(fileRef);  // Luego borra el archivo en storage
+      return true;
+    } else {
+      console.error("Document does not exist!");
+      return false;
+    }
   } catch (error) {
-    console.error("Error removing document: ", error);
+    console.error("Error removing document and file: ", error);
     return false;
   }
 }
+
 
 export async function updateImage(imageId, newTitle, newAbout) {
   try {

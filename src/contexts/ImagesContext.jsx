@@ -25,7 +25,7 @@ export const ImagesProvider = ({ children }) => {
       const newImageData = { uid, file, title, about };
       const addedImage = await addImage(newImageData);
       if (addedImage) {
-        setImages(prevImages => [...prevImages, { ...addedImage, uid: uid, likes: 0, likedBy: [] }]);
+        setImages(prevImages => [...prevImages, { ...addedImage, title, uid: uid, likes: 0, likedBy: [] }]);
         return { success: true, message: "Imagen subida exitosamente" };
       } else {
         return { success: false, message: "No se pudo subir la imagen" };

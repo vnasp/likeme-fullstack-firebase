@@ -1,10 +1,7 @@
 // External libraries
-import {
-  Box,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
-} from "@mui/material";
+import { Box, ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 // Global utilities and settings
 import { useImages } from "../contexts/ImagesContext";
@@ -13,10 +10,16 @@ import { useImages } from "../contexts/ImagesContext";
 import ImagesLike from "./ImagesLike";
 
 export default function ImagesAll() {
+  const theme = useTheme();
+  const matchesMD = useMediaQuery(theme.breakpoints.up("md"));
+
   const { images } = useImages();
   return (
-    <Box sx={{ width: "100%", height: "80vh", overflowY: "scroll" }}>
-      <ImageList variant="masonry" cols={4} gap={8}>
+    <Box sx={{ width: "100%", height:{
+      xs: "65vh",
+      md: "80vh"
+    }, overflowY: "scroll" }}>
+      <ImageList variant="masonry" cols={matchesMD ? 4 : 2} gap={8}>
         {images.map((image) => (
           <ImageListItem key={image.id}>
             <img
